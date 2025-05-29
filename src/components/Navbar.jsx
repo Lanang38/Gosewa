@@ -15,10 +15,10 @@ export default function Navbar() {
             Home
           </a>
           <a href="#" className="hover:underline">
-            Produk
+            Tentang
           </a>
           <a href="#" className="hover:underline">
-            Tentang
+            Produk
           </a>
           <a href="#" className="hover:underline">
             FAQ
@@ -50,10 +50,10 @@ export default function Navbar() {
             Home
           </a>
           <a href="#" className="block">
-            Produk
+            Tentang
           </a>
           <a href="#" className="block">
-            Tentang
+            Produk
           </a>
           <a href="#" className="block">
             FAQ
