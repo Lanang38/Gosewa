@@ -1,11 +1,36 @@
+import { ArrowUpRight } from "lucide-react";
+
 export default function Hero() {
   return (
-    <section className="relative bg-black text-white h-screen flex items-center justify-center">
-      <div className="absolute inset-0 bg-gray-800 animate-pulse"></div> {/* Skeleton Image */}
-      <div className="relative z-10 text-center px-4">
-        <h1 className="text-4xl md:text-5xl font-bold">Bebas Berkelling Kota dengan GoSewa!</h1>
-        <p className="mt-4 max-w-xl mx-auto">Sewa motor dan mobil dengan mudah, aman, dan terpercaya hanya di GoSewa!</p>
-        <button className="mt-6 px-6 py-3 bg-white text-black rounded shadow">Sewa Sekarang</button>
+    <section className="relative h-screen w-full text-white">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src="/bg-hero.jpg"
+          alt="GoSewa Background"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40"></div>
+      </div>
+
+      {/* Content Aligned Right */}
+      <div className="relative z-10 h-full flex items-center justify-end px-6 md:px-20">
+        <div className="max-w-xl">
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+            Bebas Berkeling Kota <br className="hidden md:block" />
+            dengan <span className="text-white">GoSewa!</span>
+          </h1>
+          <p className="mt-4 text-lg text-gray-200">
+            Sewa motor dengan harga terjangkau, proses yang mudah, dan layanan
+            cepat. Apa pun kebutuhan Anda, GoSewa menyediakan motor untuk
+            menemani perjalanan Anda dengan nyaman dan aman.
+          </p>
+
+          {/* Button with Lucide Icon */}
+          <button className="mt-6 inline-flex items-center gap-2 px-6 py-3 border border-white text-white font-medium rounded hover:bg-white hover:text-black transition">
+            Sewa Sekarang <ArrowUpRight size={18} />
+          </button>
+        </div>
       </div>
     </section>
   );
