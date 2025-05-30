@@ -30,13 +30,34 @@ const motorData = [
 ];
 
 export default function Recommendations() {
-  const visibleCount = 4;
-  const itemWidth = 256; // 240px + 16px gap
-  const [currentIndex, setCurrentIndex] = useState(visibleCount); // mulai setelah clone awal
+  const [visibleCount, setVisibleCount] = useState(4);
+  const [itemWidth, setItemWidth] = useState(240);
+  const [currentIndex, setCurrentIndex] = useState(4); // setelah clone
   const [isAnimating, setIsAnimating] = useState(false);
   const trackRef = useRef(null);
+  const containerRef = useRef(null);
 
-  // Clone untuk looping
+  // Update ukuran responsif
+  const updateLayout = () => {
+    const screenWidth = window.innerWidth;
+    let count = 4;
+    if (screenWidth < 640) count = 1;
+    else if (screenWidth < 768) count = 2;
+    else if (screenWidth < 1024) count = 3;
+    else count = 4;
+
+    setVisibleCount(count);
+
+    const containerWidth = containerRef.current?.offsetWidth || 960;
+    setItemWidth((containerWidth - (count - 1) * 16) / count); // minus gap
+  };
+
+  useEffect(() => {
+    updateLayout();
+    window.addEventListener("resize", updateLayout);
+    return () => window.removeEventListener("resize", updateLayout);
+  }, []);
+
   const extendedData = [
     ...motorData.slice(-visibleCount),
     ...motorData,
@@ -45,10 +66,13 @@ export default function Recommendations() {
 
   const scrollToIndex = (index, animated = true) => {
     if (!trackRef.current) return;
+    const totalItemWidth = itemWidth + 16;
     trackRef.current.style.transition = animated
-      ? "transform 0.5s ease-in-out"
+      ? "transform 0.5s ease"
       : "none";
-    trackRef.current.style.transform = `translateX(-${index * itemWidth}px)`;
+    trackRef.current.style.transform = `translateX(-${
+      index * totalItemWidth
+    }px)`;
   };
 
   const handleNext = () => {
@@ -66,11 +90,9 @@ export default function Recommendations() {
   const handleTransitionEnd = () => {
     setIsAnimating(false);
     if (currentIndex >= motorData.length + visibleCount) {
-      // Di ujung akhir, reset ke awal sebenarnya
       setCurrentIndex(visibleCount);
       scrollToIndex(visibleCount, false);
     } else if (currentIndex < visibleCount) {
-      // Di ujung awal, reset ke akhir sebenarnya
       setCurrentIndex(motorData.length + visibleCount - 1);
       scrollToIndex(motorData.length + visibleCount - 1, false);
     }
@@ -78,12 +100,12 @@ export default function Recommendations() {
 
   useEffect(() => {
     scrollToIndex(currentIndex);
-  }, [currentIndex]);
+  }, [currentIndex, visibleCount, itemWidth]);
 
   return (
-    <section className="bg-black py-16 px-4 md:px-20 text-white">
+    <section className="bg-black py-16 px-4 text-white">
       {/* Header */}
-      <div className="max-w-5xl mx-auto mb-6 flex justify-between items-center">
+      <div className="max-w-5xl mx-auto mb-6 flex justify-between items-center px-2">
         <h2 className="text-2xl font-bold">Rekomendasi Sewa</h2>
         <a href="#" className="text-sm hover:underline flex items-center gap-1">
           Lihat Semua <ArrowRight className="w-4 h-4" />
@@ -91,20 +113,20 @@ export default function Recommendations() {
       </div>
 
       {/* Carousel */}
-      <div className="max-w-5xl mx-auto overflow-hidden">
+      <div className="max-w-5xl mx-auto overflow-hidden" ref={containerRef}>
         <div
           ref={trackRef}
           onTransitionEnd={handleTransitionEnd}
           className="flex gap-4"
           style={{
-            width: `${extendedData.length * itemWidth}px`,
-            transform: `translateX(-${currentIndex * itemWidth}px)`,
+            width: `${extendedData.length * (itemWidth + 16)}px`,
           }}
         >
           {extendedData.map((item, index) => (
             <div
               key={`${item.name}-${index}`}
-              className="w-[240px] bg-[#1f1f1f] rounded-xl overflow-hidden shadow-lg flex-shrink-0"
+              className="bg-[#1f1f1f] rounded-xl overflow-hidden shadow-md flex-shrink-0"
+              style={{ width: `${itemWidth}px` }}
             >
               <div className="relative w-full h-40">
                 <img
@@ -127,8 +149,8 @@ export default function Recommendations() {
         </div>
       </div>
 
-      {/* Navigation */}
-      <div className="max-w-5xl mx-auto mt-4 flex gap-4">
+      {/* Navigasi */}
+      <div className="max-w-5xl mx-auto mt-4 flex gap-4 justify-center sm:justify-start px-2">
         <button
           onClick={handlePrev}
           className="p-2 border border-white rounded-full hover:bg-white hover:text-black transition"

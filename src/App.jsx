@@ -1,3 +1,4 @@
+import { ReactLenis } from "lenis/react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Features from "./components/Features";
@@ -10,17 +11,19 @@ import VideoSection from "./components/VideoSection";
 
 function App() {
   return (
-    <div className="font-sans">
-      <Navbar />
-      <Hero />
-      <Features />
-      <Recommendations />
-      <BestFeature />
-      <Testimonials />
-      <VideoSection />
-      <FAQ />
-      <Footer />
-    </div>
+    <ReactLenis root>
+      <div className="font-sans">
+        <Navbar />
+        <Hero />
+        <Features />
+        <Recommendations />
+        <BestFeature />
+        <Testimonials />
+        <VideoSection />
+        <FAQ />
+        <Footer />
+      </div>
+    </ReactLenis>
   );
 }
 

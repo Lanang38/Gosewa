@@ -24,7 +24,8 @@ export default function Footer() {
       <div className="py-6 border-b border-gray-700">
         <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-center md:text-left">
-            <p className="text-sm text-gray-400">
+            {/* Hidden di mobile, tampil di desktop */}
+            <p className="text-sm text-gray-400 hidden md:block">
               Join <span className="font-semibold text-white">GoSewa</span>
             </p>
             <p className="text-sm text-gray-500">
@@ -66,13 +67,13 @@ export default function Footer() {
                   <a href="#">Home</a>
                 </li>
                 <li>
-                  <a href="#">Tentang Kami</a>
+                  <a href="#about">Tentang Kami</a>
                 </li>
                 <li>
-                  <a href="#">Testimoni</a>
+                  <a href="#testimoni">Testimoni</a>
                 </li>
                 <li>
-                  <a href="#">FAQ</a>
+                  <a href="#faq">FAQ</a>
                 </li>
               </ul>
             </div>
@@ -88,49 +89,40 @@ export default function Footer() {
               </div>
 
               <h4 className="text-sm font-semibold mb-2">Pembayaran</h4>
-              <div className="flex flex-wrap gap-3 items-center">
-                <a href="#" className="transition duration-300 hover:scale-105">
+              {/* Pembayaran container */}
+              <div className="md:overflow-x-visible">
+                <div className="flex flex-nowrap md:flex-wrap gap-3 items-center whitespace-nowrap">
                   <img
                     src="src/assets/bri.png"
                     alt="BRI"
                     className="h-6 w-auto cursor-pointer"
                   />
-                </a>
-                <a href="#" className="transition duration-300 hover:scale-105">
                   <img
                     src="src/assets/ovo.jpg"
                     alt="OVO"
                     className="h-6 w-auto cursor-pointer"
                   />
-                </a>
-                <a href="#" className="transition duration-300 hover:scale-105">
                   <img
                     src="src/assets/dana.jpg"
                     alt="DANA"
                     className="h-6 w-auto cursor-pointer"
                   />
-                </a>
-                <a href="#" className="transition duration-300 hover:scale-105">
                   <img
                     src="src/assets/gopay.png"
                     alt="GoPay"
                     className="h-6 w-auto cursor-pointer"
                   />
-                </a>
-                <a href="#" className="transition duration-300 hover:scale-105">
                   <img
                     src="src/assets/visa.png"
                     alt="VISA"
                     className="h-6 w-auto cursor-pointer"
                   />
-                </a>
-                <a href="#" className="transition duration-300 hover:scale-105">
                   <img
                     src="src/assets/mastercard.png"
                     alt="MasterCard"
                     className="h-6 w-auto cursor-pointer"
                   />
-                </a>
+                </div>
               </div>
             </div>
           </div>
