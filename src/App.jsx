@@ -6,6 +6,7 @@ import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import BestFeature from "./components/BestFeature";
+import VideoSection from "./components/VideoSection";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Recommendations />
       <BestFeature />
       <Testimonials />
+      <VideoSection />
       <FAQ />
       <Footer />
     </div>
