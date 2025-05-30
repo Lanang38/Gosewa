@@ -2,7 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative h-screen w-full text-white">
+    <section id="home" className="relative h-screen w-full text-white">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img

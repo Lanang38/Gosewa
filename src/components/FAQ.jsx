@@ -42,7 +42,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-16 px-6">
+    <section id="faq" className="py-16 px-6">
       <h2 className="text-center text-xl md:text-2xl font-semibold mb-12">
         FAQ
       </h2>

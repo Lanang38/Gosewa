@@ -4,6 +4,7 @@ import motorImage from "../assets/motor.png";
 export default function Features() {
   return (
     <section
+      id="about"
       className="relative bg-white overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: `url(${bgImage})`,
@@ -18,9 +19,13 @@ export default function Features() {
 
           <div className="flex items-center justify-center lg:justify-start gap-3 mt-6">
             <span className="text-gray-700 text-sm flex md:gap-1 gap-0">
-              <img className="md:h-5 h-3 md:mt-0 mt-1" src="/src/assets/GoSewa_logo_black.png" alt="logo" />hadir sebagai
-              solusi penyewaan motor yang memudahkan mobilitas Anda—kapan pun
-              dan di mana pun.
+              <img
+                className="md:h-5 h-3 md:mt-0 mt-1"
+                src="/src/assets/GoSewa_logo_black.png"
+                alt="logo"
+              />
+              hadir sebagai solusi penyewaan motor yang memudahkan mobilitas
+              Anda—kapan pun dan di mana pun.
             </span>
           </div>
 

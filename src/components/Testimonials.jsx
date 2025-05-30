@@ -32,17 +32,40 @@ const testimonials = [
   },
 ];
 
-const visibleCount = 4;
-const itemWidth = 240;
 const gap = 20;
 const arrowSize = 40;
 
 export default function Testimonials() {
-  const [currentIndex, setCurrentIndex] = useState(visibleCount);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const containerRef = useRef(null);
   const trackRef = useRef(null);
 
-  // Clone for infinite loop effect
+  const [visibleCount, setVisibleCount] = useState(1);
+  const [itemWidth, setItemWidth] = useState(240);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const updateDimensions = () => {
+    if (!containerRef.current) return;
+    const containerWidth = containerRef.current.offsetWidth;
+
+    let count = 1;
+    if (containerWidth >= 1024) count = 4;
+    else if (containerWidth >= 768) count = 3;
+    else if (containerWidth >= 480) count = 2;
+
+    const totalGaps = (count - 1) * gap;
+    const widthPerItem = (containerWidth - totalGaps) / count;
+
+    setVisibleCount(count);
+    setItemWidth(widthPerItem);
+  };
+
+  useEffect(() => {
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
+
   const extendedData = [
     ...testimonials.slice(-visibleCount),
     ...testimonials,
@@ -84,14 +107,14 @@ export default function Testimonials() {
 
   useEffect(() => {
     scrollToIndex(currentIndex);
-  }, [currentIndex]);
+  }, [currentIndex, itemWidth, visibleCount]);
 
   return (
     <section
-      className="bg-white py-16 px-8 text-center relative"
-      style={{ minHeight: "280px" }}
+      id="testimoni"
+      className="bg-white py-16 px-4 text-center relative"
     >
-      <div className="max-w-7xl mx-auto relative">
+      <div className="max-w-6xl mx-auto">
         <h2 className="text-2xl font-bold mb-4 text-gray-900">
           Apa Kata Pelanggan Kami
         </h2>
@@ -100,43 +123,35 @@ export default function Testimonials() {
           <strong>10.370 ulasan</strong>, Menampilkan ulasan bintang 4 & 5 kami.
         </p>
 
-        {/* Wrapper utama, beri padding horizontal untuk ruang panah */}
-        <div
-          className="relative mx-auto"
-          style={{
-            paddingLeft: arrowSize + 16,
-            paddingRight: arrowSize + 16,
-            width: itemWidth * visibleCount + gap * (visibleCount - 1),
-            boxSizing: "content-box",
-          }}
-        >
-          {/* Container carousel: overflow hidden supaya kartu yang keluar sisi tersembunyi */}
-          <div
-            className="overflow-hidden"
-            style={{
-              width: itemWidth * visibleCount + gap * (visibleCount - 1),
-            }}
+        {/* Carousel Container */}
+        <div className="flex items-center justify-center gap-4">
+          {/* Panah Kiri (Desktop) */}
+          <button
+            onClick={handlePrev}
+            className="hidden md:block p-2 bg-white border rounded-full shadow transition-colors duration-300 hover:bg-blue-900 hover:text-white"
+            style={{ width: arrowSize, height: arrowSize }}
           >
-            {/* Track kartu */}
+            <ArrowLeft className="w-5 h-5 mx-auto" />
+          </button>
+
+          {/* Track */}
+          <div ref={containerRef} className="overflow-hidden w-full max-w-full">
             <div
               ref={trackRef}
               onTransitionEnd={handleTransitionEnd}
               className="flex"
               style={{
                 gap: `${gap}px`,
-                width: extendedData.length * (itemWidth + gap) - gap,
+                width: extendedData.length * (itemWidth + gap),
               }}
             >
               {extendedData.map((item, index) => (
                 <div
                   key={index}
-                  className="group flex-shrink-0 bg-white rounded-xl border border-gray-300 shadow p-4 text-left cursor-pointer
-                    transition-colors duration-300
-                    hover:bg-blue-900"
+                  className="group flex-shrink-0 bg-white rounded-xl border border-gray-300 shadow p-4 text-left cursor-pointer transition-colors duration-300 hover:bg-blue-900"
                   style={{
                     width: itemWidth,
                     minHeight: 220,
-                    boxSizing: "border-box",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
@@ -166,29 +181,29 @@ export default function Testimonials() {
             </div>
           </div>
 
-          {/* Tombol navigasi panah di luar container kartu */}
+          {/* Panah Kanan (Desktop) */}
+          <button
+            onClick={handleNext}
+            className="hidden md:block p-2 bg-white border rounded-full shadow transition-colors duration-300 hover:bg-blue-900 hover:text-white"
+            style={{ width: arrowSize, height: arrowSize }}
+          >
+            <ArrowRight className="w-5 h-5 mx-auto" />
+          </button>
+        </div>
+
+        {/* Panah Mobile */}
+        <div className="flex md:hidden justify-center gap-4 mt-6">
           <button
             onClick={handlePrev}
-            aria-label="Previous"
-            className="absolute top-1/2 -translate-y-1/2 z-20 p-2 bg-white border rounded-full shadow transition-colors duration-300 hover:bg-blue-900 hover:text-white"
-            style={{
-              left: 0,
-              width: arrowSize,
-              height: arrowSize,
-            }}
+            className="p-2 bg-white border rounded-full shadow transition-colors duration-300 hover:bg-blue-900 hover:text-white"
+            style={{ width: arrowSize, height: arrowSize }}
           >
             <ArrowLeft className="w-5 h-5 mx-auto" />
           </button>
-
           <button
             onClick={handleNext}
-            aria-label="Next"
-            className="absolute top-1/2 -translate-y-1/2 z-20 p-2 bg-white border rounded-full shadow transition-colors duration-300 hover:bg-blue-900 hover:text-white"
-            style={{
-              right: 0,
-              width: arrowSize,
-              height: arrowSize,
-            }}
+            className="p-2 bg-white border rounded-full shadow transition-colors duration-300 hover:bg-blue-900 hover:text-white"
+            style={{ width: arrowSize, height: arrowSize }}
           >
             <ArrowRight className="w-5 h-5 mx-auto" />
           </button>
