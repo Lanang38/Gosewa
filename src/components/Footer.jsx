@@ -91,42 +91,42 @@ export default function Footer() {
               <div className="flex flex-wrap gap-3 items-center">
                 <a href="#" className="transition duration-300 hover:scale-105">
                   <img
-                    src="/icons/bri.png"
+                    src="src/assets/bri.png"
                     alt="BRI"
                     className="h-6 w-auto cursor-pointer"
                   />
                 </a>
                 <a href="#" className="transition duration-300 hover:scale-105">
                   <img
-                    src="/icons/ovo.png"
+                    src="src/assets/ovo.jpg"
                     alt="OVO"
                     className="h-6 w-auto cursor-pointer"
                   />
                 </a>
                 <a href="#" className="transition duration-300 hover:scale-105">
                   <img
-                    src="/icons/dana.png"
+                    src="src/assets/dana.jpg"
                     alt="DANA"
                     className="h-6 w-auto cursor-pointer"
                   />
                 </a>
                 <a href="#" className="transition duration-300 hover:scale-105">
                   <img
-                    src="/icons/gopay.png"
+                    src="src/assets/gopay.png"
                     alt="GoPay"
                     className="h-6 w-auto cursor-pointer"
                   />
                 </a>
                 <a href="#" className="transition duration-300 hover:scale-105">
                   <img
-                    src="/icons/visa.png"
+                    src="src/assets/visa.png"
                     alt="VISA"
                     className="h-6 w-auto cursor-pointer"
                   />
                 </a>
                 <a href="#" className="transition duration-300 hover:scale-105">
                   <img
-                    src="/icons/mastercard.png"
+                    src="src/assets/mastercard.png"
                     alt="MasterCard"
                     className="h-6 w-auto cursor-pointer"
                   />
