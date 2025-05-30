@@ -1,16 +1,198 @@
+import { useRef, useState, useEffect } from "react";
+import { ArrowLeft, ArrowRight, Star } from "lucide-react";
+
+const testimonials = [
+  {
+    rating: 5,
+    title: "Sangat Memuaskan!",
+    content:
+      "Proses penyewaan motor di GoSewa sangat cepat dan mudah. Motor dalam kondisi baik.",
+    user: "Agus",
+  },
+  {
+    rating: 5,
+    title: "Sangat Direkomendasikan",
+    content:
+      "GoSewa sangat membantu saya dalam mencari motor sewaan. Mereka sangat profesional.",
+    user: "Adut",
+  },
+  {
+    rating: 5,
+    title: "Pelayanan Ramah dan Cepat",
+    content:
+      "Pelayanan sangat ramah dan efisien. Proses penyewaan motor cepat dan mudah.",
+    user: "Jojo",
+  },
+  {
+    rating: 5,
+    title: "Penyewaan Motor Tanpa Hambatan",
+    content:
+      "Proses sewa motor di GoSewa benar-benar tanpa hambatan. Saya hanya perlu pesan dan langsung jalan.",
+    user: "Nanang",
+  },
+];
+
+const visibleCount = 4;
+const itemWidth = 240;
+const gap = 20;
+const arrowSize = 40;
+
 export default function Testimonials() {
-  const items = Array.from({ length: 4 });
+  const [currentIndex, setCurrentIndex] = useState(visibleCount);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const trackRef = useRef(null);
+
+  // Clone for infinite loop effect
+  const extendedData = [
+    ...testimonials.slice(-visibleCount),
+    ...testimonials,
+    ...testimonials.slice(0, visibleCount),
+  ];
+
+  const scrollToIndex = (index, animated = true) => {
+    if (!trackRef.current) return;
+    const totalItemWidth = itemWidth + gap;
+    trackRef.current.style.transition = animated
+      ? "transform 0.5s ease"
+      : "none";
+    const scrollPosition = index * totalItemWidth;
+    trackRef.current.style.transform = `translateX(-${scrollPosition}px)`;
+  };
+
+  const handleNext = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentIndex((prev) => prev + 1);
+  };
+
+  const handlePrev = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentIndex((prev) => prev - 1);
+  };
+
+  const handleTransitionEnd = () => {
+    setIsAnimating(false);
+    if (currentIndex >= testimonials.length + visibleCount) {
+      setCurrentIndex(visibleCount);
+      scrollToIndex(visibleCount, false);
+    } else if (currentIndex < visibleCount) {
+      setCurrentIndex(testimonials.length + visibleCount - 1);
+      scrollToIndex(testimonials.length + visibleCount - 1, false);
+    }
+  };
+
+  useEffect(() => {
+    scrollToIndex(currentIndex);
+  }, [currentIndex]);
 
   return (
-    <section className="bg-white py-16 px-4 text-center">
-      <h2 className="text-2xl font-semibold mb-8">Apa Kata Pelanggan Kami</h2>
-      <div className="flex flex-wrap justify-center gap-6">
-        {items.map((_, idx) => (
+    <section
+      className="bg-white py-16 px-8 text-center relative"
+      style={{ minHeight: "280px" }}
+    >
+      <div className="max-w-7xl mx-auto relative">
+        <h2 className="text-2xl font-bold mb-4 text-gray-900">
+          Apa Kata Pelanggan Kami
+        </h2>
+        <p className="text-sm text-gray-500 mb-10">
+          Peringkat <strong>5 / 5</strong> berdasarkan{" "}
+          <strong>10.370 ulasan</strong>, Menampilkan ulasan bintang 4 & 5 kami.
+        </p>
+
+        {/* Wrapper utama, beri padding horizontal untuk ruang panah */}
+        <div
+          className="relative mx-auto"
+          style={{
+            paddingLeft: arrowSize + 16,
+            paddingRight: arrowSize + 16,
+            width: itemWidth * visibleCount + gap * (visibleCount - 1),
+            boxSizing: "content-box",
+          }}
+        >
+          {/* Container carousel: overflow hidden supaya kartu yang keluar sisi tersembunyi */}
           <div
-            key={idx}
-            className="w-64 h-32 bg-gray-200 animate-pulse rounded-lg"
-          ></div>
-        ))}
+            className="overflow-hidden"
+            style={{
+              width: itemWidth * visibleCount + gap * (visibleCount - 1),
+            }}
+          >
+            {/* Track kartu */}
+            <div
+              ref={trackRef}
+              onTransitionEnd={handleTransitionEnd}
+              className="flex"
+              style={{
+                gap: `${gap}px`,
+                width: extendedData.length * (itemWidth + gap) - gap,
+              }}
+            >
+              {extendedData.map((item, index) => (
+                <div
+                  key={index}
+                  className="group flex-shrink-0 bg-white rounded-xl border border-gray-300 shadow p-4 text-left cursor-pointer
+                    transition-colors duration-300
+                    hover:bg-blue-900"
+                  style={{
+                    width: itemWidth,
+                    minHeight: 220,
+                    boxSizing: "border-box",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <div>
+                    <div className="flex items-center gap-1 mb-2 text-yellow-500 group-hover:text-white">
+                      {[...Array(item.rating)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 fill-yellow-400 stroke-yellow-400 group-hover:fill-white group-hover:stroke-white transition-colors duration-300"
+                        />
+                      ))}
+                    </div>
+                    <h3 className="text-sm font-semibold text-gray-800 mb-1 group-hover:text-white transition-colors duration-300">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-3 line-clamp-4 group-hover:text-white transition-colors duration-300">
+                      "{item.content}"
+                    </p>
+                  </div>
+                  <p className="text-xs text-gray-400 font-medium mt-2 group-hover:text-white transition-colors duration-300">
+                    - {item.user}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Tombol navigasi panah di luar container kartu */}
+          <button
+            onClick={handlePrev}
+            aria-label="Previous"
+            className="absolute top-1/2 -translate-y-1/2 z-20 p-2 bg-white border rounded-full shadow transition-colors duration-300 hover:bg-blue-900 hover:text-white"
+            style={{
+              left: 0,
+              width: arrowSize,
+              height: arrowSize,
+            }}
+          >
+            <ArrowLeft className="w-5 h-5 mx-auto" />
+          </button>
+
+          <button
+            onClick={handleNext}
+            aria-label="Next"
+            className="absolute top-1/2 -translate-y-1/2 z-20 p-2 bg-white border rounded-full shadow transition-colors duration-300 hover:bg-blue-900 hover:text-white"
+            style={{
+              right: 0,
+              width: arrowSize,
+              height: arrowSize,
+            }}
+          >
+            <ArrowRight className="w-5 h-5 mx-auto" />
+          </button>
+        </div>
       </div>
     </section>
   );
