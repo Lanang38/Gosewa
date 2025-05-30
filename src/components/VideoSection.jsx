@@ -1,25 +1,40 @@
+import { useRef, useState } from "react";
 import { Play } from "lucide-react";
 
 export default function VideoSection() {
+  const videoRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+
+  const handlePlay = () => {
+    videoRef.current.play();
+    setPlaying(true);
+  };
+
   return (
     <section className="bg-gray-50 py-16 px-4">
       <div className="max-w-7xl mx-auto text-center">
         <div className="flex flex-wrap justify-center items-start gap-12">
           {/* Video Placeholder */}
           <div className="w-full md:w-[560px] h-[320px] rounded-2xl overflow-hidden shadow-lg bg-white relative">
-            <img
-              src="https://via.placeholder.com/560x320.png?text=Video+Placeholder"
-              alt="Video"
+            <video
+              ref={videoRef}
               className="w-full h-full object-cover"
+              src="/src/assets/video_motor.mp4"
+              controls={playing}
+              onPause={() => setPlaying(false)}
             />
-            <button
-              className="absolute inset-0 flex items-center justify-center"
-              aria-label="Play video"
-            >
-              <div className="w-16 h-16 bg-white hover:bg-gray-100 rounded-full flex items-center justify-center shadow-md transition">
-                <Play className="w-6 h-6 text-black ml-[2px]" />
-              </div>
-            </button>
+            {!playing && (
+              <button
+                className="absolute inset-0 flex items-center justify-center"
+                aria-label="Play video"
+                onClick={handlePlay}
+                type="button"
+              >
+                <div className="w-16 h-16 bg-white/80 hover:bg-gray-100 rounded-full flex items-center justify-center shadow-md transition">
+                  <Play className="w-8 h-8 text-black ml-[2px]" />
+                </div>
+              </button>
+            )}
           </div>
 
           {/* Deskripsi */}

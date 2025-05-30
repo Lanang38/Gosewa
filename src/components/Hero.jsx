@@ -6,11 +6,11 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="/bg-hero.jpg"
+          src="/src/assets/background.jpg"
           alt="GoSewa Background"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 "></div>
       </div>
 
       {/* Content Aligned Right */}
