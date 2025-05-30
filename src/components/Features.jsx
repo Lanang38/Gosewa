@@ -17,8 +17,8 @@ export default function Features() {
           </h2>
 
           <div className="flex items-center justify-center lg:justify-start gap-3 mt-6">
-            <span className="text-gray-700 text-sm flex gap-1">
-              <img className="h-5" src="/src/assets/GoSewa_logo_black.png" alt="logo" />hadir sebagai
+            <span className="text-gray-700 text-sm flex md:gap-1 gap-0">
+              <img className="md:h-5 h-3 md:mt-0 mt-1" src="/src/assets/GoSewa_logo_black.png" alt="logo" />hadir sebagai
               solusi penyewaan motor yang memudahkan mobilitas Anda—kapan pun
               dan di mana pun.
             </span>
