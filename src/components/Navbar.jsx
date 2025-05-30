@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const navigation = [
-  { name: "Home", href: "#home" },
+  { name: "Home", href: "#" },
   { name: "About", href: "#about" },
   { name: "Testimoni", href: "#testimoni" },
   { name: "FAQ", href: "#faq" },
@@ -23,7 +23,7 @@ const Navbar = () => {
     <header className="absolute top-0 left-0 w-full z-50">
       <nav>
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="#home">
+          <a href="#">
             <img src="src/assets/logo2.png" className="h-5" alt="Logo" />
           </a>
 
