@@ -13,6 +13,7 @@ export default function Features() {
             Butuh tempat sewa kendaraan yang murah dan terpercaya?
           </h2>
 
+
           <div className="mt-6 text-gray-700 text-sm leading-relaxed">
             <p className="mt-6 text-gray-700 text-sm leading-relaxed">
               <span className="font-bold text-2xl">GoSewa</span> hadir sebagai
