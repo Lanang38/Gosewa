@@ -8,6 +8,8 @@ import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import BestFeature from "./components/BestFeature";
 import VideoSection from "./components/VideoSection";
+import TopBar from "./components/TopBar";
+import NewsletterForm from "./components/NewsletterForm";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Testimonials />
         <VideoSection />
         <FAQ />
+        <TopBar />
+        <NewsletterForm />
         <Footer />
       </div>
     </ReactLenis>

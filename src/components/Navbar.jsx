@@ -5,6 +5,7 @@ const navigation = [
   { name: "About", href: "#about" },
   { name: "Testimoni", href: "#testimoni" },
   { name: "FAQ", href: "#faq" },
+  { name: "Contacts", href: "#contacts" },
 ];
 
 const Navbar = () => {
