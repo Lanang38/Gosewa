@@ -1,14 +1,10 @@
-import bgImage from "../assets/BG2.png";
 import motorImage from "../assets/motor.png";
 
 export default function Features() {
   return (
     <section
       id="about"
-      className="relative bg-white overflow-hidden bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage: `url(${bgImage})`,
-      }}
+      className="features-section relative bg-white overflow-hidden"
     >
       <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 px-6 lg:px-24 py-20 min-h-[600px] lg:min-h-[768px]">
         {/* Left Text Content */}
@@ -21,7 +17,7 @@ export default function Features() {
             <span className="text-gray-700 text-sm flex md:gap-1 gap-0">
               <img
                 className="md:h-5 h-3 md:mt-0 mt-1"
-                src="/src/assets/GoSewa_logo_black.png"
+                src="/assets/GoSewa_logo_black.png"
                 alt="logo"
               />
               hadir sebagai solusi penyewaan motor yang memudahkan mobilitas
@@ -39,7 +35,6 @@ export default function Features() {
         {/* Right Image */}
         <div className="lg:w-1/2 flex justify-center">
           <div className="w-[250px] md:w-[400px] h-auto">
-            {/* Replace with actual image when ready */}
             <img src={motorImage} alt="Motor" className="w-full h-auto" />
           </div>
         </div>

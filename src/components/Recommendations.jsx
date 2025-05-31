@@ -1,43 +1,15 @@
 import { ArrowLeft, ArrowRight, Info } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-
-const motorData = [
-  {
-    name: "Scoopy - 2024",
-    desc: "Kendala kilatmu.",
-    img: "src/assets/scoopy.png",
-  },
-  {
-    name: "Vario160 - 2023",
-    desc: "Cari motor yg nyaman? Ini solusinya.",
-    img: "src/assets/vario160.png",
-  },
-  {
-    name: "PCX 160 - 2021",
-    desc: "Rasa sewa seperti beli!",
-    img: "src/assets/pcx160.png",
-  },
-  {
-    name: "CBR150 - 2023",
-    desc: "Motor kencang & eksklusif.",
-    img: "src/assets/cbr150.png",
-  },
-  {
-    name: "Nmax - 2022",
-    desc: "Pilihan terbaik buat harian.",
-    img: "src/assets/nmax2022.jpg",
-  },
-];
+import motorData from "./MotorData.jsx";
 
 export default function Recommendations() {
   const [visibleCount, setVisibleCount] = useState(4);
   const [itemWidth, setItemWidth] = useState(240);
-  const [currentIndex, setCurrentIndex] = useState(4); // setelah clone
+  const [currentIndex, setCurrentIndex] = useState(4);
   const [isAnimating, setIsAnimating] = useState(false);
   const trackRef = useRef(null);
   const containerRef = useRef(null);
 
-  // Update ukuran responsif
   const updateLayout = () => {
     const screenWidth = window.innerWidth;
     let count = 4;
@@ -49,7 +21,7 @@ export default function Recommendations() {
     setVisibleCount(count);
 
     const containerWidth = containerRef.current?.offsetWidth || 960;
-    setItemWidth((containerWidth - (count - 1) * 16) / count); // minus gap
+    setItemWidth((containerWidth - (count - 1) * 16) / count);
   };
 
   useEffect(() => {
@@ -117,7 +89,7 @@ export default function Recommendations() {
         <div
           ref={trackRef}
           onTransitionEnd={handleTransitionEnd}
-          className="flex gap-4"
+          className="carousel-track"
           style={{
             width: `${extendedData.length * (itemWidth + 16)}px`,
           }}
@@ -125,16 +97,16 @@ export default function Recommendations() {
           {extendedData.map((item, index) => (
             <div
               key={`${item.name}-${index}`}
-              className="bg-[#1f1f1f] rounded-xl overflow-hidden shadow-md flex-shrink-0"
+              className="carousel-card"
               style={{ width: `${itemWidth}px` }}
             >
-              <div className="relative w-full h-40">
+              <div className="carousel-card-img">
                 <img
                   src={item.img}
                   alt={item.name}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute top-2 right-2 bg-white text-black rounded-full p-1">
+                <div className="carousel-card-info">
                   <Info className="w-4 h-4" />
                 </div>
               </div>
