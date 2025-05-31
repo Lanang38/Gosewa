@@ -3,7 +3,7 @@ import { Minus, Plus } from "lucide-react";
 import { FAQsData } from "./FAQsData";
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState(null);
 
   const toggle = (index) => {
     setOpenIndex(index === openIndex ? null : index);
