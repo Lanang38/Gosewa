@@ -1,36 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight, Star } from "lucide-react";
-
-const testimonials = [
-  {
-    rating: 5,
-    title: "Sangat Memuaskan!",
-    content:
-      "Proses penyewaan motor di GoSewa sangat cepat dan mudah. Motor dalam kondisi baik.",
-    user: "Agus",
-  },
-  {
-    rating: 5,
-    title: "Sangat Direkomendasikan",
-    content:
-      "GoSewa sangat membantu saya dalam mencari motor sewaan. Mereka sangat profesional.",
-    user: "Adut",
-  },
-  {
-    rating: 5,
-    title: "Pelayanan Ramah dan Cepat",
-    content:
-      "Pelayanan sangat ramah dan efisien. Proses penyewaan motor cepat dan mudah.",
-    user: "Jojo",
-  },
-  {
-    rating: 5,
-    title: "Penyewaan Motor Tanpa Hambatan",
-    content:
-      "Proses sewa motor di GoSewa benar-benar tanpa hambatan. Saya hanya perlu pesan dan langsung jalan.",
-    user: "Nanang",
-  },
-];
+import { testimonials } from "./TestimonialsData"; // sesuaikan path-nya
 
 const gap = 20;
 const arrowSize = 40;
@@ -123,9 +93,8 @@ export default function Testimonials() {
           <strong>10.370 ulasan</strong>, Menampilkan ulasan bintang 4 & 5 kami.
         </p>
 
-        {/* Carousel Container */}
         <div className="flex items-center justify-center gap-4">
-          {/* Panah Kiri (Desktop) */}
+          {/* Tombol kiri (Desktop) */}
           <button
             onClick={handlePrev}
             className="hidden md:block p-2 bg-white border rounded-full shadow transition-colors duration-300 hover:bg-blue-900 hover:text-white"
@@ -134,12 +103,12 @@ export default function Testimonials() {
             <ArrowLeft className="w-5 h-5 mx-auto" />
           </button>
 
-          {/* Track */}
+          {/* Carousel */}
           <div ref={containerRef} className="overflow-hidden w-full max-w-full">
             <div
               ref={trackRef}
               onTransitionEnd={handleTransitionEnd}
-              className="flex"
+              className="flex transition-transform ease-in-out"
               style={{
                 gap: `${gap}px`,
                 width: extendedData.length * (itemWidth + gap),
@@ -148,40 +117,25 @@ export default function Testimonials() {
               {extendedData.map((item, index) => (
                 <div
                   key={index}
-                  className="group flex-shrink-0 bg-white rounded-xl border border-gray-300 shadow p-4 text-left cursor-pointer transition-colors duration-300 hover:bg-blue-900"
-                  style={{
-                    width: itemWidth,
-                    minHeight: 220,
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                  }}
+                  className="testimonial-card"
+                  style={{ width: itemWidth }}
                 >
                   <div>
-                    <div className="flex items-center gap-1 mb-2 text-yellow-500 group-hover:text-white">
+                    <div className="testimonial-stars">
                       {[...Array(item.rating)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="w-4 h-4 fill-yellow-400 stroke-yellow-400 group-hover:fill-white group-hover:stroke-white transition-colors duration-300"
-                        />
+                        <Star key={i} className="testimonial-star" />
                       ))}
                     </div>
-                    <h3 className="text-sm font-semibold text-gray-800 mb-1 group-hover:text-white transition-colors duration-300">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 mb-3 line-clamp-4 group-hover:text-white transition-colors duration-300">
-                      "{item.content}"
-                    </p>
+                    <h3 className="testimonial-title">{item.title}</h3>
+                    <p className="testimonial-content">"{item.content}"</p>
                   </div>
-                  <p className="text-xs text-gray-400 font-medium mt-2 group-hover:text-white transition-colors duration-300">
-                    - {item.user}
-                  </p>
+                  <p className="testimonial-user">- {item.user}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Panah Kanan (Desktop) */}
+          {/* Tombol kanan (Desktop) */}
           <button
             onClick={handleNext}
             className="hidden md:block p-2 bg-white border rounded-full shadow transition-colors duration-300 hover:bg-blue-900 hover:text-white"
@@ -191,7 +145,7 @@ export default function Testimonials() {
           </button>
         </div>
 
-        {/* Panah Mobile */}
+        {/* Tombol Navigasi Mobile */}
         <div className="flex md:hidden justify-center gap-4 mt-6">
           <button
             onClick={handlePrev}
