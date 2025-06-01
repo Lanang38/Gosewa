@@ -6,13 +6,13 @@ export default function Features() {
       id="about"
       className="features-section relative bg-white overflow-hidden"
     >
-      <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 px-6 lg:px-24 py-20 min-h-[600px] lg:min-h-[768px]">
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-12 px-6 lg:px-24 py-20 min-h-[600px] lg:min-h-[768px]">
         {/* Left Text Content */}
-        <div className="lg:w-1/2 text-center lg:text-left">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 leading-snug">
+        <div className="lg:w-1/2 text-center lg:text-left order-2 lg:order-1">
+          {/* Heading for Desktop */}
+          <h2 className="hidden lg:block text-3xl md:text-4xl font-bold text-blue-900 leading-snug">
             Butuh tempat sewa kendaraan yang murah dan terpercaya?
           </h2>
-
 
           <div className="mt-6 text-gray-700 text-sm leading-relaxed">
             <p className="mt-6 text-gray-700 text-sm leading-relaxed">
@@ -29,8 +29,12 @@ export default function Features() {
           </p>
         </div>
 
-        {/* Right Image */}
-        <div className="lg:w-1/2 flex justify-center">
+        {/* Right Image & Mobile Heading */}
+        <div className="lg:w-1/2 flex flex-col items-center order-1 lg:order-2">
+          {/* Heading only for Mobile */}
+          <h2 className="block lg:hidden text-3xl md:text-4xl font-bold text-blue-900 leading-snug text-center mb-4">
+            Butuh tempat sewa kendaraan yang murah dan terpercaya?
+          </h2>
           <div className="w-[250px] md:w-[400px] h-auto">
             <img src={motorImage} alt="Motor" className="w-full h-auto" />
           </div>
