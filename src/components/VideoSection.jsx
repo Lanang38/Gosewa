@@ -1,9 +1,13 @@
 import { useRef, useState } from "react";
 import { Play, ArrowUpRight } from "lucide-react";
+import { motion, useInView } from "framer-motion";
 
 export default function VideoSection() {
   const videoRef = useRef(null);
+  const sectionRef = useRef(null);
   const [playing, setPlaying] = useState(false);
+
+  const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
 
   const handlePlay = () => {
     videoRef.current.play();
@@ -11,11 +15,16 @@ export default function VideoSection() {
   };
 
   return (
-    <section className="bg-gray-50 py-16 px-4">
+    <section ref={sectionRef} className="bg-gray-50 py-16 px-4 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-center items-start gap-12">
-          {/* Video di kiri desktop, bawah di mobile */}
-          <div className="w-full md:w-[560px] h-[320px] rounded-2xl overflow-hidden shadow-lg bg-white relative order-2 md:order-1">
+          {/* Video */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="w-full md:w-[560px] h-[320px] rounded-2xl overflow-hidden shadow-lg bg-white relative order-2 md:order-1"
+          >
             <video
               ref={videoRef}
               className="w-full h-full object-cover"
@@ -35,10 +44,15 @@ export default function VideoSection() {
                 </div>
               </button>
             )}
-          </div>
+          </motion.div>
 
-          {/* Deskripsi di kanan desktop */}
-          <div className="w-full md:max-w-md order-1 md:order-2 text-center md:text-left">
+          {/* Teks + CTA Desktop */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            className="w-full md:max-w-md order-1 md:order-2 text-center md:text-left"
+          >
             <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4 leading-snug">
               Temukan Kemudahan Dalam <br />
               Setiap Aktivitasmu
@@ -48,23 +62,27 @@ export default function VideoSection() {
               sewa kapanpun dan dimanapun sampai kamu berada.
             </p>
 
-            {/* Tombol untuk desktop */}
             <div className="hidden md:block">
               <button className="inline-flex items-center gap-2 px-5 py-2 bg-black text-white text-sm font-medium rounded-md hover:bg-white hover:text-black hover:border-2 transition">
                 Temukan Lebih Banyak
                 <ArrowUpRight className="w-4 h-4" />
               </button>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Tombol untuk mobile */}
-        <div className="mt-6 md:hidden text-center">
+        {/* Tombol Mobile */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+          className="mt-6 md:hidden text-center"
+        >
           <button className="inline-flex items-center gap-2 px-5 py-2 bg-black text-white text-sm font-medium rounded-md hover:bg-white hover:text-black hover:border-2 transition">
             Temukan Lebih Banyak
             <ArrowUpRight className="w-4 h-4" />
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
