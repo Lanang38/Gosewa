@@ -1,8 +1,7 @@
 import {
   Facebook,
-  Twitter,
   Instagram,
-  Linkedin,
+  // Linkedin,
   ArrowRight,
 } from "lucide-react";
 
@@ -46,9 +45,22 @@ export default function Footer() {
               <h3 className="text-lg font-semibold mb-4">Hubungi Kita</h3>
               <div className="flex gap-4 mb-4">
                 <Facebook className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" />
-                <Twitter className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" />
-                <Instagram className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" />
-                <Linkedin className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" />
+                <a href="https://x.com/Gosewa18056" target="blank">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 1226.37 1226.37"
+                    className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer"
+                  >
+                    <path
+                      d="m727.348 519.284 446.727-519.284h-105.86l-387.893 450.887-309.809-450.887h-357.328l468.492 681.821-468.492 544.549h105.866l409.625-476.152 327.181 476.152h357.328l-485.863-707.086zm-144.998 168.544-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721h-162.604l-323.311-462.446z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </a>
+                <a href="https://www.instagram.com/gosewaaa/" target="blank">                
+                  <Instagram className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" />
+                </a>
+                {/* <Linkedin className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" /> */}
               </div>
 
               <h4 className="text-sm font-semibold mb-2">Pembayaran</h4>

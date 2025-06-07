@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Info } from "lucide-react";
+import { ArrowLeft, ArrowRight, Bookmark } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import motorData from "./MotorData.jsx";
@@ -179,7 +179,7 @@ export default function Recommendations() {
                   className="w-full h-full object-cover"
                 />
                 <div className="carousel-card-info absolute top-2 right-2 bg-black bg-opacity-50 p-1 rounded-full">
-                  <Info className="w-4 h-4" />
+                  <Bookmark className="w-4 h-4" />
                 </div>
               </div>
               <div className="p-4">
