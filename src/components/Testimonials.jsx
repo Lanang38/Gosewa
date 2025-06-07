@@ -8,11 +8,13 @@ const arrowSize = 40;
 export default function Testimonials() {
   const containerRef = useRef(null);
   const trackRef = useRef(null);
+  const sectionRef = useRef(null);
 
   const [visibleCount, setVisibleCount] = useState(1);
   const [itemWidth, setItemWidth] = useState(240);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const updateDimensions = () => {
     if (!containerRef.current) return;
@@ -34,6 +36,21 @@ export default function Testimonials() {
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.4 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
   const extendedData = [
@@ -79,10 +96,20 @@ export default function Testimonials() {
     scrollToIndex(currentIndex);
   }, [currentIndex, itemWidth, visibleCount]);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNext();
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section
       id="testimoni"
-      className="bg-white py-16 px-4 text-center relative"
+      ref={sectionRef}
+      className={`bg-white py-16 px-4 text-center relative transition-opacity duration-1000 ease-in-out ${
+        isVisible ? "opacity-100" : "opacity-0"
+      }`}
     >
       <div className="max-w-6xl mx-auto">
         <h2 className="text-2xl font-bold mb-4 text-gray-900">
@@ -94,7 +121,6 @@ export default function Testimonials() {
         </p>
 
         <div className="flex items-center justify-center gap-4">
-          {/* Tombol kiri (Desktop) */}
           <button
             onClick={handlePrev}
             className="hidden md:block p-2 bg-white border rounded-full shadow transition-colors duration-300 hover:bg-blue-900 hover:text-white"
@@ -103,7 +129,6 @@ export default function Testimonials() {
             <ArrowLeft className="w-5 h-5 mx-auto" />
           </button>
 
-          {/* Carousel */}
           <div ref={containerRef} className="overflow-hidden w-full max-w-full">
             <div
               ref={trackRef}
@@ -135,7 +160,6 @@ export default function Testimonials() {
             </div>
           </div>
 
-          {/* Tombol kanan (Desktop) */}
           <button
             onClick={handleNext}
             className="hidden md:block p-2 bg-white border rounded-full shadow transition-colors duration-300 hover:bg-blue-900 hover:text-white"
@@ -145,7 +169,6 @@ export default function Testimonials() {
           </button>
         </div>
 
-        {/* Tombol Navigasi Mobile */}
         <div className="flex md:hidden justify-center gap-4 mt-6">
           <button
             onClick={handlePrev}
