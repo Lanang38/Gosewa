@@ -1,4 +1,41 @@
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
+import Swal from "sweetalert2";
+
 export default function NewsletterForm() {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_w023gsa", // ID Service EmailJS kamu
+        "template_ls4y6pe", // ID Template EmailJS kamu
+        form.current,
+        "5B0kduS9aRayAXvEd" // Public Key EmailJS kamu
+      )
+      .then(
+        () => {
+          Swal.fire({
+            icon: "success",
+            title: "Berhasil!",
+            text: "Pesan Anda berhasil dikirim.",
+            confirmButtonColor: "#2563eb",
+          });
+          form.current.reset();
+        },
+        () => {
+          Swal.fire({
+            icon: "error",
+            title: "Gagal!",
+            text: "Terjadi kesalahan saat mengirim pesan.",
+            confirmButtonColor: "#ef4444",
+          });
+        }
+      );
+  };
+
   return (
     <div className="py-12 bg-[#0B0F1A] text-white">
       <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
@@ -14,13 +51,15 @@ export default function NewsletterForm() {
         </div>
 
         {/* Kanan */}
-        <form className="space-y-4">
+        <form ref={form} onSubmit={sendEmail} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-1">Name</label>
+              <label className="block text-sm font-medium mb-1">Nama</label>
               <input
                 type="text"
-                placeholder="Your Name"
+                name="user_name"
+                required
+                placeholder="Nama Anda"
                 className="w-full bg-[#1B1F2C] text-white placeholder-gray-500 px-4 py-3 rounded-md focus:outline-none"
               />
             </div>
@@ -28,16 +67,20 @@ export default function NewsletterForm() {
               <label className="block text-sm font-medium mb-1">Email</label>
               <input
                 type="email"
-                placeholder="Your Email"
+                name="user_email"
+                required
+                placeholder="Email Anda"
                 className="w-full bg-[#1B1F2C] text-white placeholder-gray-500 px-4 py-3 rounded-md focus:outline-none"
               />
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Message</label>
+            <label className="block text-sm font-medium mb-1">Pesan</label>
             <textarea
+              name="message"
               rows="5"
-              placeholder="Message"
+              required
+              placeholder="Tulis pesan anda..."
               className="w-full bg-[#1B1F2C] text-white placeholder-gray-500 px-4 py-3 rounded-md resize-none focus:outline-none"
             />
           </div>
