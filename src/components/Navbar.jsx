@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const navigation = [
-  { name: "Home", href: "#" },
-  { name: "About", href: "#about" },
-  { name: "Testimoni", href: "#testimoni" },
-  { name: "FAQ", href: "#faq" },
-  { name: "Contacts", href: "#contacts" },
+  { name: 'Home', href: '#' },
+  { name: 'About', href: '#about' },
+  { name: 'Testimoni', href: '#testimoni' },
+  { name: 'FAQ', href: '#faq' },
+  { name: 'Contacts', href: '#contacts' },
 ];
 
 const Navbar = () => {
@@ -25,7 +25,7 @@ const Navbar = () => {
       <nav>
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="#">
-            <img src="src/assets/logo2.png" className="h-5" alt="Logo" />
+            <img src="/logo2.png" className="h-5" alt="Logo" />
           </a>
 
           {/* Toggle button with animated hamburger */}
@@ -37,17 +37,17 @@ const Navbar = () => {
           >
             <span
               className={`block h-0.5 w-6 bg-white rounded transition-transform duration-300 ease-in-out origin-left ${
-                menuOpen ? "rotate-45 translate-y-2" : ""
+                menuOpen ? 'rotate-45 translate-y-2' : ''
               }`}
             ></span>
             <span
               className={`block h-0.5 w-6 bg-white rounded my-1 transition-opacity duration-300 ease-in-out ${
-                menuOpen ? "opacity-0" : "opacity-100"
+                menuOpen ? 'opacity-0' : 'opacity-100'
               }`}
             ></span>
             <span
               className={`block h-0.5 w-6 bg-white rounded transition-transform duration-300 ease-in-out origin-left ${
-                menuOpen ? "-rotate-45 -translate-y-2" : ""
+                menuOpen ? '-rotate-45 -translate-y-2' : ''
               }`}
             ></span>
           </button>
@@ -55,7 +55,7 @@ const Navbar = () => {
           {/* Navigation menu */}
           <div
             className={`${
-              menuOpen ? "block" : "hidden"
+              menuOpen ? 'block' : 'hidden'
             } w-full md:block md:w-auto`}
             id="navbar-default"
           >
@@ -71,7 +71,7 @@ const Navbar = () => {
                     href={item.href}
                     onClick={() => handleLinkClick(i)}
                     className={`block py-2 px-3 transition-all duration-300 ease-in-out hover:text-blue-500 ${
-                      clickedIndex === i ? "clicked" : ""
+                      clickedIndex === i ? 'clicked' : ''
                     }`}
                   >
                     {item.name}
