@@ -1,22 +1,20 @@
-import { ArrowLeft, ArrowRight, Bookmark } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
-import motorData from "./MotorData.jsx";
+import { ArrowLeft, ArrowRight, Bookmark } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useInView } from 'framer-motion';
+import motorData from './MotorData.jsx';
 
 export default function Recommendations() {
-  const [visibleCount, setVisibleCount] = useState(4); // fixed 4 cards
+  const [visibleCount, setVisibleCount] = useState(4);
   const [itemWidth, setItemWidth] = useState(240);
   const [currentIndex, setCurrentIndex] = useState(4);
   const [isAnimating, setIsAnimating] = useState(false);
   const trackRef = useRef(null);
   const containerRef = useRef(null);
 
-  // Ref untuk section utama, untuk detect inView
   const sectionRef = useRef(null);
-  const inView = useInView(sectionRef, { once: false, margin: "-100px" });
+  const inView = useInView(sectionRef, { once: false, margin: '-100px' });
 
   const autoScrollRef = useRef(null);
-  const autoScrollActive = useRef(true);
 
   const updateLayout = () => {
     const count = 4;
@@ -27,8 +25,8 @@ export default function Recommendations() {
 
   useEffect(() => {
     updateLayout();
-    window.addEventListener("resize", updateLayout);
-    return () => window.removeEventListener("resize", updateLayout);
+    window.addEventListener('resize', updateLayout);
+    return () => window.removeEventListener('resize', updateLayout);
   }, []);
 
   const extendedData = [
@@ -41,8 +39,8 @@ export default function Recommendations() {
     if (!trackRef.current) return;
     const totalItemWidth = itemWidth + 16;
     trackRef.current.style.transition = animated
-      ? "transform 0.5s ease"
-      : "none";
+      ? 'transform 0.5s ease'
+      : 'none';
     trackRef.current.style.transform = `translateX(-${
       index * totalItemWidth
     }px)`;
@@ -54,7 +52,7 @@ export default function Recommendations() {
       if (isAnimating) return;
       setIsAnimating(true);
       setCurrentIndex((prev) => prev + 1);
-    }, 2000); // 2 detik
+    }, 2000);
   };
 
   const stopAutoScroll = () => {
@@ -66,14 +64,12 @@ export default function Recommendations() {
 
   const handleNext = () => {
     if (isAnimating) return;
-    // jangan stop auto scroll dan jangan set autoScrollActive
     setIsAnimating(true);
     setCurrentIndex((prev) => prev + 1);
   };
 
   const handlePrev = () => {
     if (isAnimating) return;
-    // jangan stop auto scroll dan jangan set autoScrollActive
     setIsAnimating(true);
     setCurrentIndex((prev) => prev - 1);
   };
@@ -98,8 +94,6 @@ export default function Recommendations() {
     return () => stopAutoScroll();
   }, []);
 
-  // **Animasi mengikuti scroll vertikal:**
-  // Kita simpan posisi dan opacity tiap card di state berdasarkan jarak ke viewport
   const [scrollY, setScrollY] = useState(window.scrollY);
   const cardsRef = useRef([]);
 
@@ -107,31 +101,15 @@ export default function Recommendations() {
     const onScroll = () => {
       setScrollY(window.scrollY);
     };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Fungsi hitung animasi tiap card berdasarkan posisi scroll
   const getCardStyle = (index) => {
-    if (!cardsRef.current[index]) return { opacity: 0, y: 0 };
-
-    const rect = cardsRef.current[index].getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
-    const cardCenterY = rect.top + rect.height / 2;
-    const distFromCenter = cardCenterY - viewportHeight / 2;
-
-    const maxDist = viewportHeight / 2 + rect.height;
-
-    // Normalize jarak 0..1 (0 di tengah viewport, 1 jauh)
-    const normDist = Math.min(Math.abs(distFromCenter) / maxDist, 1);
-
-    // Opacity dari 1 (di tengah) ke 0 (jauh dari tengah)
-    const opacity = 1 - normDist;
-
     return {
       y: 0,
-      opacity,
-      transition: { type: "spring", stiffness: 300, damping: 30 },
+      opacity: 1,
+      transition: { type: 'spring', stiffness: 300, damping: 30 },
     };
   };
 
@@ -145,7 +123,7 @@ export default function Recommendations() {
           visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
         }}
         initial="hidden"
-        animate={inView ? "visible" : "hidden"}
+        animate={inView ? 'visible' : 'hidden'}
       >
         <h2 className="text-2xl font-bold">Rekomendasi Sewa</h2>
         <a href="#" className="text-sm hover:underline flex items-center gap-1">
@@ -205,7 +183,7 @@ export default function Recommendations() {
           },
         }}
         initial="hidden"
-        animate={inView ? "visible" : "hidden"}
+        animate={inView ? 'visible' : 'hidden'}
       >
         <button
           onClick={handlePrev}
