@@ -68,32 +68,32 @@ export default function Footer() {
               <div className="md:overflow-x-visible">
                 <div className="flex flex-nowrap md:flex-wrap gap-3 items-center whitespace-nowrap">
                   <img
-                    src="src/assets/bri.png"
+                    src="/bri.png"
                     alt="BRI"
                     className="h-6 w-auto cursor-pointer"
                   />
                   <img
-                    src="src/assets/ovo.jpg"
+                    src="/ovo.jpg"
                     alt="OVO"
                     className="h-6 w-auto cursor-pointer"
                   />
                   <img
-                    src="src/assets/dana.jpg"
+                    src="/dana.jpg"
                     alt="DANA"
                     className="h-6 w-auto cursor-pointer"
                   />
                   <img
-                    src="src/assets/gopay.png"
+                    src="/gopay.png"
                     alt="GoPay"
                     className="h-6 w-auto cursor-pointer"
                   />
                   <img
-                    src="src/assets/visa.png"
+                    src="/visa.png"
                     alt="VISA"
                     className="h-6 w-auto cursor-pointer"
                   />
                   <img
-                    src="src/assets/mastercard.png"
+                    src="/mastercard.png"
                     alt="MasterCard"
                     className="h-6 w-auto cursor-pointer"
                   />

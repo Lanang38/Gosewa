@@ -28,7 +28,7 @@ export default function VideoSection() {
             <video
               ref={videoRef}
               className="w-full h-full object-cover"
-              src="/src/assets/video_motor.mp4"
+              src="/video_motor.mp4"
               controls={playing}
               onPause={() => setPlaying(false)}
             />
