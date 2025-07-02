@@ -156,9 +156,6 @@ export default function Recommendations() {
                   alt={item.name}
                   className="w-full h-full object-cover"
                 />
-                <div className="carousel-card-info absolute top-2 right-2 bg-black bg-opacity-50 p-1 rounded-full">
-                  <Bookmark className="w-4 h-4" />
-                </div>
               </div>
               <div className="p-4">
                 <h3 className="font-semibold text-white text-sm">
