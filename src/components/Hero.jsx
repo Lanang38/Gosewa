@@ -1,6 +1,6 @@
-import { ArrowUpRight } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { ArrowUpRight } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
 
 export default function Hero() {
   const ref = useRef(null);
@@ -11,7 +11,7 @@ export default function Hero() {
   // Scroll tracking
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"], // muncul hingga keluar
+    offset: ['start end', 'end start'], // muncul hingga keluar
   });
 
   // Scroll-based exit only
@@ -45,7 +45,7 @@ export default function Hero() {
           className="max-w-xl"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
           style={hasAnimatedIn ? { opacity: scrollOpacity, x: scrollX } : {}}
         >
           <h1 className="text-4xl md:text-5xl font-bold leading-tight">
@@ -58,9 +58,14 @@ export default function Hero() {
             menemani perjalanan Anda dengan nyaman dan aman.
           </p>
 
-          <button className="mt-6 inline-flex items-center gap-2 px-6 py-3 border border-white text-white font-medium rounded hover:bg-white hover:text-black transition">
+          <a
+            href="https://gosewa.my.id/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center gap-2 px-6 py-3 border border-white text-white font-medium rounded hover:bg-white hover:text-black transition"
+          >
             Sewa Sekarang <ArrowUpRight size={18} />
-          </button>
+          </a>
         </motion.div>
       </div>
     </section>
