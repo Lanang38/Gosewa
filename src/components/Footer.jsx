@@ -3,7 +3,7 @@ import {
   Instagram,
   // Linkedin,
   ArrowRight,
-} from "lucide-react";
+} from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -16,9 +16,14 @@ export default function Footer() {
               <h2 className="text-2xl font-bold mb-6 leading-snug">
                 Ayo Gunakan <br /> GoSewa
               </h2>
-              <button className="bg-white text-black px-6 py-2 rounded-full font-medium flex items-center gap-2 hover:bg-blue-600 hover:text-white transition cursor-pointer">
+              <a
+                href="https://gosewa.my.id/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white transition"
+              >
                 Sewa Sekarang <ArrowRight className="w-4 h-4" />
-              </button>
+              </a>
             </div>
 
             {/* Kolom 2 */}
@@ -44,8 +49,13 @@ export default function Footer() {
             <div className="w-[240px]">
               <h3 className="text-lg font-semibold mb-4">Hubungi Kita</h3>
               <div className="flex gap-4 mb-4">
-                <a href="https://www.facebook.com/profile.php?id=61577361536125" target="blank"><Facebook className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" /></a>
-                
+                <a
+                  href="https://www.facebook.com/profile.php?id=61577361536125"
+                  target="blank"
+                >
+                  <Facebook className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" />
+                </a>
+
                 <a href="https://x.com/Gosewa18056" target="blank">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +68,7 @@ export default function Footer() {
                     />
                   </svg>
                 </a>
-                <a href="https://www.instagram.com/gosewaaa/" target="blank">                
+                <a href="https://www.instagram.com/gosewaaa/" target="blank">
                   <Instagram className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" />
                 </a>
                 {/* <Linkedin className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" /> */}
