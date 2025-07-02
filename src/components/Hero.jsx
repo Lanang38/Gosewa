@@ -29,7 +29,7 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="/src/assets/background.jpg"
+          src="/background.jpg"
           alt="GoSewa Background"
           className="w-full h-full object-cover"
         />
