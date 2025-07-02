@@ -44,7 +44,8 @@ export default function Footer() {
             <div className="w-[240px]">
               <h3 className="text-lg font-semibold mb-4">Hubungi Kita</h3>
               <div className="flex gap-4 mb-4">
-                <Facebook className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" />
+                <a href="https://www.facebook.com/profile.php?id=61577361536125" target="blank"><Facebook className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" /></a>
+                
                 <a href="https://x.com/Gosewa18056" target="blank">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
