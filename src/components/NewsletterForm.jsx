@@ -37,7 +37,7 @@ export default function NewsletterForm() {
   };
 
   return (
-    <div className="py-12 bg-[#0B0F1A] text-white">
+    <div className="py-12 bg-[#0B0F1A] text-white overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
         {/* Kiri */}
         <div className="self-center">

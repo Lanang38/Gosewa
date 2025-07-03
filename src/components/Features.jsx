@@ -55,7 +55,7 @@ export default function Features() {
     <section
       id="about"
       ref={ref}
-      className="relative overflow-hidden bg-cover bg-center"
+      className="relative overflow-hidden bg-cover bg-center overflow-hidden"
       style={{
         backgroundImage: `url(${bgImage})`,
       }}
