@@ -21,14 +21,14 @@ const Navbar = () => {
   };
 
   return (
-    <header className="absolute top-0 left-0 w-full z-50 overflow-hidden">
-      <nav>
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <header className="fixed top-0 left-0 w-full z-50">
+      <nav className="bg-transparent">
+        <div className="max-w-screen-xl flex items-center justify-between mx-auto px-4 py-3">
           <a href="#">
             <img src="/logo2.png" className="h-5" alt="Logo" />
           </a>
 
-          {/* Toggle button with animated hamburger */}
+          {/* Toggle Button */}
           <button
             type="button"
             className="inline-flex flex-col items-center justify-center p-2 w-10 h-10 text-white rounded-lg md:hidden"
@@ -52,26 +52,22 @@ const Navbar = () => {
             ></span>
           </button>
 
-          {/* Navigation menu */}
+          {/* Menu */}
           <div
-            className={`${
-              menuOpen ? 'block' : 'hidden'
-            } w-full md:block md:w-auto`}
-            id="navbar-default"
+            className={`absolute top-full left-0 w-full md:static md:w-auto transition-all duration-300 ease-in-out ${
+              menuOpen ? 'block' : 'hidden md:block'
+            }`}
           >
             <ul
-              className="absolute right-4 top-16 w-48 font-medium flex flex-col p-4 mt-2 
-                         rounded-lg bg-white/10 backdrop-blur-md text-white 
-                         md:static md:flex-row md:space-x-8 md:p-0 md:mt-0 
-                         md:bg-transparent md:backdrop-blur-0 md:w-auto"
+              className={`flex flex-col items-start gap-2 px-6 py-4 bg-black/80 backdrop-blur-md text-white md:flex-row md:bg-transparent md:items-center md:p-0 md:gap-8`}
             >
               {navigation.map((item, i) => (
                 <li key={item.name}>
                   <a
                     href={item.href}
                     onClick={() => handleLinkClick(i)}
-                    className={`block py-2 px-3 transition-all duration-300 ease-in-out hover:text-blue-500 ${
-                      clickedIndex === i ? 'clicked' : ''
+                    className={`block py-2 px-3 transition-all duration-300 ease-in-out hover:text-blue-400 ${
+                      clickedIndex === i ? 'font-semibold text-blue-400' : ''
                     }`}
                   >
                     {item.name}
