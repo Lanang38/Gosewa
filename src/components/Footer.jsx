@@ -1,18 +1,13 @@
-import {
-  Facebook,
-  Instagram,
-  // Linkedin,
-  ArrowRight,
-} from 'lucide-react';
+import { Facebook, Instagram, ArrowRight } from 'lucide-react';
 
 export default function Footer() {
   return (
     <div className="bg-[#0B0F1A] text-white overflow-hidden">
       <footer className="pt-12 pb-16">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="flex flex-wrap justify-between gap-6 mb-16">
+          <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start text-center md:text-left gap-10 mb-16">
             {/* Kolom 1 */}
-            <div className="w-[240px]">
+            <div className="w-full md:w-[240px] flex flex-col items-center md:items-start">
               <h2 className="text-2xl font-bold mb-6 leading-snug">
                 Ayo Gunakan <br /> GoSewa
               </h2>
@@ -27,7 +22,7 @@ export default function Footer() {
             </div>
 
             {/* Kolom 2 */}
-            <div className="w-[240px]">
+            <div className="w-full md:w-[240px] flex flex-col items-center md:items-start">
               <h3 className="text-lg font-semibold mb-4">Company</h3>
               <ul className="space-y-2 text-sm text-gray-300">
                 <li>
@@ -46,16 +41,16 @@ export default function Footer() {
             </div>
 
             {/* Kolom 3 */}
-            <div className="w-[240px]">
+            <div className="w-full md:w-[240px] flex flex-col items-center md:items-start">
               <h3 className="text-lg font-semibold mb-4">Hubungi Kita</h3>
-              <div className="flex gap-4 mb-4">
+
+              <div className="flex justify-center md:justify-start gap-4 mb-4">
                 <a
                   href="https://www.facebook.com/profile.php?id=61577361536125"
                   target="blank"
                 >
                   <Facebook className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" />
                 </a>
-
                 <a href="https://x.com/Gosewa18056" target="blank">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -71,50 +66,50 @@ export default function Footer() {
                 <a href="https://www.instagram.com/gosewaaa/" target="blank">
                   <Instagram className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" />
                 </a>
-                {/* <Linkedin className="w-5 h-5 text-gray-300 hover:text-white cursor-pointer" /> */}
               </div>
 
-              <h4 className="text-sm font-semibold mb-2">Pembayaran</h4>
-              <div className="md:overflow-x-visible">
-                <div className="flex flex-nowrap md:flex-wrap gap-3 items-center whitespace-nowrap">
-                  <img
-                    src="/bri.png"
-                    alt="BRI"
-                    className="h-6 w-auto cursor-pointer"
-                  />
-                  <img
-                    src="/ovo.jpg"
-                    alt="OVO"
-                    className="h-6 w-auto cursor-pointer"
-                  />
-                  <img
-                    src="/dana.jpg"
-                    alt="DANA"
-                    className="h-6 w-auto cursor-pointer"
-                  />
-                  <img
-                    src="/gopay.png"
-                    alt="GoPay"
-                    className="h-6 w-auto cursor-pointer"
-                  />
-                  <img
-                    src="/visa.png"
-                    alt="VISA"
-                    className="h-6 w-auto cursor-pointer"
-                  />
-                  <img
-                    src="/mastercard.png"
-                    alt="MasterCard"
-                    className="h-6 w-auto cursor-pointer"
-                  />
-                </div>
+              <h4 className="text-sm font-semibold mb-2 hidden md:block">
+                Pembayaran
+              </h4>
+              <div className="hidden md:flex md:flex-wrap gap-3 items-center">
+                <img
+                  src="/bri.png"
+                  alt="BRI"
+                  className="h-6 w-auto cursor-pointer"
+                />
+                <img
+                  src="/ovo.jpg"
+                  alt="OVO"
+                  className="h-6 w-auto cursor-pointer"
+                />
+                <img
+                  src="/dana.jpg"
+                  alt="DANA"
+                  className="h-6 w-auto cursor-pointer"
+                />
+                <img
+                  src="/gopay.png"
+                  alt="GoPay"
+                  className="h-6 w-auto cursor-pointer"
+                />
+                <img
+                  src="/visa.png"
+                  alt="VISA"
+                  className="h-6 w-auto cursor-pointer"
+                />
+                <img
+                  src="/mastercard.png"
+                  alt="MasterCard"
+                  className="h-6 w-auto cursor-pointer"
+                />
               </div>
             </div>
           </div>
 
           <hr className="border-gray-700" />
         </div>
-        <div className="max-w-6xl mx-auto px-4 mt-4 flex justify-end text-sm text-gray-400">
+
+        <div className="max-w-6xl mx-auto px-4 mt-4 flex justify-center md:justify-end text-sm text-gray-400">
           © 2025 GoSewa. All rights reserved.
         </div>
       </footer>

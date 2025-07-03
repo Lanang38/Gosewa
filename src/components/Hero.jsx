@@ -25,7 +25,10 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative h-screen w-full text-white overflow-hidden">
+    <section
+      id="home"
+      className="relative h-screen w-full text-white overflow-hidden"
+    >
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
@@ -48,11 +51,11 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           style={hasAnimatedIn ? { opacity: scrollOpacity, x: scrollX } : {}}
         >
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+          <h1 className="text-2xl md:text-5xl font-bold leading-snug md:leading-tight">
             Bebas Berkeling Kota <br className="hidden md:block" />
             dengan <span className="text-white">GoSewa!</span>
           </h1>
-          <p className="mt-4 text-lg text-gray-200">
+          <p className="mt-4 text-base md:text-lg text-gray-200">
             Sewa motor dengan harga terjangkau, proses yang mudah, dan layanan
             cepat. Apa pun kebutuhan Anda, GoSewa menyediakan motor untuk
             menemani perjalanan Anda dengan nyaman dan aman.
@@ -62,7 +65,7 @@ export default function Hero() {
             href="https://gosewa.my.id/"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 px-6 py-3 border border-white text-white font-medium rounded hover:bg-white hover:text-black transition"
+            className="mt-6 inline-flex items-center gap-2 px-4 py-2 md:px-6 md:py-3 border border-white text-sm md:text-base text-white font-medium rounded hover:bg-white hover:text-black transition"
           >
             Sewa Sekarang <ArrowUpRight size={18} />
           </a>
