@@ -76,7 +76,7 @@ export default function BestFeature() {
   };
 
   return (
-    <section ref={sectionRef} className="bg-gray-50 py-16 px-4">
+    <section ref={sectionRef} className="bg-gray-50 py-16 px-4 overflow-hidden">
       <div className="max-w-7xl mx-auto text-center">
         <motion.h2
           className="text-2xl font-semibold text-gray-800 mb-10"

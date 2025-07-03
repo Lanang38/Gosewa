@@ -21,7 +21,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="absolute top-0 left-0 w-full z-50">
+    <header className="absolute top-0 left-0 w-full z-50 overflow-hidden">
       <nav>
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="#">

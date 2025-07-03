@@ -107,7 +107,7 @@ export default function Testimonials() {
     <section
       id="testimoni"
       ref={sectionRef}
-      className={`bg-white py-16 px-4 text-center relative transition-opacity duration-1000 ease-in-out ${
+      className={`bg-white py-16 px-4 text-center relative transition-opacity  overflow-hidden duration-1000 ease-in-out ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     >

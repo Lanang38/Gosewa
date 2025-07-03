@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Bookmark } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import motorData from './MotorData.jsx';
@@ -8,19 +8,28 @@ export default function Recommendations() {
   const [itemWidth, setItemWidth] = useState(240);
   const [currentIndex, setCurrentIndex] = useState(4);
   const [isAnimating, setIsAnimating] = useState(false);
+
   const trackRef = useRef(null);
   const containerRef = useRef(null);
-
   const sectionRef = useRef(null);
   const inView = useInView(sectionRef, { once: false, margin: '-100px' });
-
   const autoScrollRef = useRef(null);
 
   const updateLayout = () => {
-    const count = 4;
+    const width = window.innerWidth;
+    let count = 4;
+
+    if (width < 640) {
+      count = 1;
+    } else if (width < 768) {
+      count = 2;
+    } else if (width < 1024) {
+      count = 3;
+    }
+
     setVisibleCount(count);
     const containerWidth = containerRef.current?.offsetWidth || 960;
-    setItemWidth((containerWidth - (count - 1) * 16) / count);
+    setItemWidth((containerWidth - (count - 1) * 16) / count); // gap = 16px
   };
 
   useEffect(() => {
@@ -52,7 +61,7 @@ export default function Recommendations() {
       if (isAnimating) return;
       setIsAnimating(true);
       setCurrentIndex((prev) => prev + 1);
-    }, 2000);
+    }, 3000);
   };
 
   const stopAutoScroll = () => {
@@ -94,27 +103,18 @@ export default function Recommendations() {
     return () => stopAutoScroll();
   }, []);
 
-  const [scrollY, setScrollY] = useState(window.scrollY);
   const cardsRef = useRef([]);
-
-  useEffect(() => {
-    const onScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  const getCardStyle = (index) => {
-    return {
-      y: 0,
-      opacity: 1,
-      transition: { type: 'spring', stiffness: 300, damping: 30 },
-    };
-  };
+  const getCardStyle = () => ({
+    y: 0,
+    opacity: 1,
+    transition: { type: 'spring', stiffness: 300, damping: 30 },
+  });
 
   return (
-    <section ref={sectionRef} className="bg-black py-16 px-4 text-white">
+    <section
+      ref={sectionRef}
+      className="bg-black py-16 px-4 text-white overflow-hidden"
+    >
       {/* Header */}
       <motion.div
         className="max-w-5xl mx-auto mb-6 flex justify-between items-center px-2"

@@ -7,7 +7,7 @@ import {
 
 export default function Footer() {
   return (
-    <div className="bg-[#0B0F1A] text-white">
+    <div className="bg-[#0B0F1A] text-white overflow-hidden">
       <footer className="pt-12 pb-16">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex flex-wrap justify-between gap-6 mb-16">

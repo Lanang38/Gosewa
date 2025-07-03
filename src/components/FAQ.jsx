@@ -40,7 +40,7 @@ export default function FAQ() {
   };
 
   return (
-    <section ref={sectionRef} id="faq" className="py-16 px-6">
+    <section ref={sectionRef} id="faq" className="py-16 px-6 overflow-hidden">
       {/* Header Animasi */}
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
